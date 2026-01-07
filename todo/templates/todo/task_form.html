@@ -1,0 +1,24 @@
+{% extends 'todo/base.html' %}
+{% block title %}{% if mode == 'update' %}Edit Task{% else %}Add Task{% endif %}{% endblock %}
+{% block content %}
+<h2 class="mb-3">{% if mode == 'update' %}Edit Task{% else %}Add New Task{% endif %}</h2>
+<form method="POST" class="mt-2">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        {{ form.title }}
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        {{ form.description }}
+    </div>
+    <div class="form-check mb-3">
+        {{ form.completed }}
+        <label class="form-check-label">Completed</label>
+    </div>
+    <button type="submit" class="btn btn-success">
+        {% if mode == 'update' %}Save Changes{% else %}Save Task{% endif %}
+    </button>
+    <a href="{% url 'task_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'todo/base.html' %}
+{% block title %}My To-Do List{% endblock %}
+{% block content %}
+<h1 class="mb-4">My To-Do List</h1>
+
+<ul class="list-group">
+    {% for task in tasks %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+            {% if task.completed %}
+                <span class="badge bg-success me-2">Done</span>
+                <s>{{ task.title }}</s>
+            {% else %}
+                <span class="badge bg-secondary me-2">Pending</span>
+                {{ task.title }}
+            {% endif %}
+            {% if task.description %}
+                <div class="text-muted small">{{ task.description }}</div>
+            {% endif %}
+            <div class="small text-muted">Created: {{ task.created_at|date:"d M Y, h:i a" }}</div>
+        </div>
+        <div class="btn-group">
+            <a href="{% url 'task_toggle' task.id %}" class="btn btn-sm btn-outline-success">
+                {% if task.completed %}Mark Pending{% else %}Mark Done{% endif %}
+            </a>
+            <a href="{% url 'task_update' task.id %}" class="btn btn-sm btn-warning">Edit</a>
+            <a href="{% url 'task_delete' task.id %}" class="btn btn-sm btn-danger">Delete</a>
+        </div>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No tasks yet. Click "Add Task" to create one.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
