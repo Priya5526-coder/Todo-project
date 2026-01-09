@@ -16,8 +16,11 @@ Users can add, update, and delete tasks with a clean and responsive interface.
 
 # output 
 
+<<<<<<< HEAD
 
 
 
 https://github.com/user-attachments/assets/996f5622-c897-4ddb-b960-29031eda4986
+=======
+>>>>>>> e7c2d14 (Update settings.py for Render deployment)
 
